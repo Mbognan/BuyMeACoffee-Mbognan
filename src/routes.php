@@ -1,5 +1,10 @@
 <?php
 namespace BuyMeACoffee;
-use BuyMeACoffee\Kernel\Http\Router;  
+use BuyMeACoffee\Kernel\Http\Router;
+use BuyMeACoffee\Kernel\View\viewNotFound;
 
-Router::get('/','HomePage@index');
+try {
+  Router::get('/','HomePage@index');
+} catch (viewNotFound $err) {
+  echo $err->getMessage();
+}

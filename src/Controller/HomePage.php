@@ -2,8 +2,9 @@
 
 namespace BuyMeACoffee\Controller;
 
+use BuyMeACoffee\Kernel\View\View;
 class HomePage{
   public function index():void{
-    echo 'Hi from HomePage';
+    View::render('home/index','HomePage',['name'=>'Mbognan']);
   }
 }

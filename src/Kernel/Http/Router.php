@@ -29,8 +29,8 @@ class Router{
   
   public static function execute(string $uri , string $method=''){
     $uri = '/' . trim($uri,'/');
-    $url= '/';
-    $url .= isset($_GET['uri']) ? $_GET['uri']: '';
+
+    $url = isset($_GET['uri']) ? '/' . $_GET['uri']: '/';
 
     if(preg_match("#^$uri$#", $url, $params)){
       if(self::isRedirection($method)){
@@ -70,7 +70,7 @@ class Router{
   }
 
   private static function isHttpMethodValid():bool{
-    return self::$httpMethod !== null || $_SERVER['REQUEST_METHOD'] === self::$httpMethod;
+    return self::$httpMethod !== null && $_SERVER['REQUEST_METHOD'] === self::$httpMethod;
   }
   private static function getActionParameters(array $params):array{
       foreach($params as $key => $value){
