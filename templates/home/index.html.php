@@ -1,4 +1,5 @@
 
 
-Hello <?= $name ?> <?= date('H:i:s') ?>
 
+<p>  Hello <?= $name ?> <?= date('H:i:s') ?>
+</p>

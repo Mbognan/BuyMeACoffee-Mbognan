@@ -4,7 +4,7 @@ namespace BuyMeACoffee\Controller;
 
 use BuyMeACoffee\Kernel\Input;
 use BuyMeACoffee\Kernel\View\View;
-use BuyMeACoffee\Services\User as UserService;
+use BuyMeACoffee\service\User as UserService;
 
 class Account{
   public function __construct(private UserService $userService = new UserService){
@@ -22,9 +22,27 @@ class Account{
 
       if(isset($fullName, $email, $password)){
         if($this->userService->isEmailValid($email) && $this->userService->isPasswordValid($password)){
+
+          if($this->userService->doesAccountExist($password)){
+            $viewVariables[View::ERROR_MESSAGE_KEY] = 'An account with the same email address';
+          }else{
+
           
-          redirect('/?uri=home');
-      }else{
+          $user = [   
+            "fullName" =>$fullName, 
+            "email" =>$email, 
+            "password" =>$password
+          ];
+        
+          if($this->userService->create([$user])){
+            redirect('/?uri=home');
+          }else{
+            $viewVariables[View::ERROR_MESSAGE_KEY] = 'An error has occurred while creating your account..';
+
+          }
+          
+      }
+    }else{
         $viewVariables[View::ERROR_MESSAGE_KEY] = 'Email / Password is not valid';
 
       }

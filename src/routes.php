@@ -6,7 +6,7 @@ use BuyMeACoffee\Kernel\View\viewNotFound;
 try {
   Router::get('/','HomePage@index');
   Router::get('/about','HomePage@about');
-  Router::get('/contact','/?uri=about');  
+  Router::get('/contact','/about');  
 
   Router::getAndPost('/signup', 'Account@signup');
   Router::getAndPost('/signin', 'Account@signin');
