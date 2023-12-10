@@ -6,3 +6,4 @@
   <title><?= $title ?></title>
 </head>
 <body>
+  <?php include 'messages.inc.html.php' ?>

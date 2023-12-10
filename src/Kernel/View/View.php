@@ -9,7 +9,9 @@ use ReflectionMethod;
 final class View{
   private const PATH = __DIR__ .  '/../../../templates/';
   private const FILE_EXTENSION = '.html.php';
-   public static function render(string $view, string $title,array $context){
+  public const SUCCESS_MESSAGE_KEY = 'success_message';
+  public const ERROR_MESSAGE_KEY = 'error_message';
+   public static function render(string $view, string $title,array $context = []){
 
     extract($context);
     require_once self::PATH. 'partials/header.inc.html.php';
@@ -17,7 +19,7 @@ final class View{
     if(self::isViewExists($view)){
        include_once(self::PATH. $view . self::FILE_EXTENSION);
     }else{
-      throw new viewNotFound(sprintf('"%s" does not exists.', $view . self::FILE_EXTENSION));
+      throw new viewNotFound(sprintf('%s does not exists.', $view . self::FILE_EXTENSION));
     }
 
     require_once self::PATH. 'partials/footer.inc.html.php';

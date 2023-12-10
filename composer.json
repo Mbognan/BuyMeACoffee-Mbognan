@@ -5,7 +5,9 @@
     },
     "autoload": {
         "psr-4": {
-            "BuyMeACoffee\\": "src"
-        }
+            "BuyMeACoffee\\": "src/"
+        },
+        "files": ["src/helpers.php"]
     }
 }
+
