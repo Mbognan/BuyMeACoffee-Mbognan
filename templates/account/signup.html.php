@@ -3,7 +3,7 @@
 <?php endif; ?>
 
 <div class="center">
-  <form method="post" action="<?= site_url('signup')?>">
+  <form method="post" action="<?= site_url('/signup')?>">
   <p> 
     <label for="name">Name</label>
     <input type="text" name="name" id="name" required="required">

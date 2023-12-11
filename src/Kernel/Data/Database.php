@@ -12,13 +12,14 @@ class Database{
 
     try {
       static::$pdo = new PDO(
-        "mysql:host={$_ENV['DB_HOST']};dbname={$_ENV['DB_USER']};",
-        $_ENV['DB_USER'],
-        $_ENV['DB_PASSWORD']
+        "mysql:host={$dbDetails['db_host']};dbname={$dbDetails['db_name']};",
+        $dbDetails['db_user'],
+        $dbDetails['db_password']
       );
       // static::$pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
     }catch (PDOException $e){
-      exit('An Unexpected Error occurred');
+      echo $e->getMessage();
+      exit('An Unexpected Error in Database occurred');
     }
 
   }
@@ -27,6 +28,8 @@ class Database{
     static::$stmt = static::$pdo->prepare($sql);
 
     foreach($binds as $key => $value){
+      echo $key .'='. $value .'';
+      echo '<br>';
       static::$stmt->bindValue($key, $value);
     }
 

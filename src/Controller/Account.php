@@ -27,14 +27,13 @@ class Account{
             $viewVariables[View::ERROR_MESSAGE_KEY] = 'An account with the same email address';
           }else{
 
-          
           $user = [   
             "fullName" =>$fullName, 
             "email" =>$email, 
             "password" =>$password
           ];
         
-          if($this->userService->create([$user])){
+          if($this->userService->create($user)){
             redirect('/?uri=home');
           }else{
             $viewVariables[View::ERROR_MESSAGE_KEY] = 'An error has occurred while creating your account..';
