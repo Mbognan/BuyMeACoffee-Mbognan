@@ -1,13 +1,21 @@
 <?php
 declare (strict_types =1);
  namespace BuyMeACoffee\service;
- use BuyMeACoffee\Model\User as UserModel;
+
+use BuyMeACoffee\Kernel\Session;
+use BuyMeACoffee\Model\User as UserModel;
  class User{
+
+
   private const MINIMUM_PASSWORD = 6;
+
+  private const PASSWORD_COST_FACTOR = 12;
+  private const PASSWORD_ALGORITHM = PASSWORD_BCRYPT;
   public function __construct(private UserModel $userModel = new UserModel() ){
+        
 
   }
-  public function create(array $userData):bool{
+  public function create(array $userData):string|bool{
     return $this->userModel->createUser($userData);
   }
 
@@ -20,6 +28,17 @@ declare (strict_types =1);
   }
   public   function isPasswordValid(string $password):bool{
     return strlen($password) >= self::MINIMUM_PASSWORD;
+  }
+
+ 
+
+  public function hashPassword(string $password):string{
+    return (string)password_hash($password, self::PASSWORD_ALGORITHM,[ 'cost'  => self::PASSWORD_COST_FACTOR]);
+  }
+
+  public function isVerified(string $clearPassword, string $hashPassword):bool{
+      return password_verify($clearPassword, $hashPassword);
+
   }
 
 

@@ -3,16 +3,24 @@ declare(strict_types= 1);
 namespace BuyMeACoffee\Controller;
 
 use BuyMeACoffee\Kernel\Input;
+use BuyMeACoffee\Kernel\Session;
 use BuyMeACoffee\Kernel\View\View;
 use BuyMeACoffee\service\User as UserService;
+use BuyMeACoffee\service\UserSession;
 
 class Account{
+
+    //private UserService $userService;
+    // private Session $session;
+    private UserSession $userSession;
   public function __construct(private UserService $userService = new UserService){
-   
-  }
+        // $this->userService = new UserService();
+        $session = new Session();
+        $this->userSession = new UserSession($session);
+  }     
 
   
-  public function signup():void{  
+  public function signUp():void{  
     $viewVariables = [];
     if(Input::post('signup_button')){
       // echo Input::post('email');
@@ -30,11 +38,17 @@ class Account{
           $user = [   
             "fullName" =>$fullName, 
             "email" =>$email, 
-            "password" =>$password
+            "password" =>$this->userService->hashPassword($password)
           ];
         
-          if($this->userService->create($user)){
-            redirect('/?uri=home');
+          if($userId = $this->userService->create($user)){
+            $this->userSession->setAuthentication([
+              UserSession::USER_SESSION_ID => $userId,
+              'email'=> $email,
+              'fullName' => $fullName
+            ]);
+          //User Login Success     
+            redirect('/');
           }else{
             $viewVariables[View::ERROR_MESSAGE_KEY] = 'An error has occurred while creating your account..';
 
@@ -54,8 +68,13 @@ class Account{
 
     View::render('account/signup','Sign Up',$viewVariables);
   }
-  public function signin():void{
+  public function signIn():void{
     View::render('account/signin','Login');
+  }
+
+  public function logout():void{
+    $this->userSession->logout();
+    redirect('/');
   }
 
   

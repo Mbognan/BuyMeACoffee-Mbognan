@@ -6,7 +6,7 @@ class User{
 
   
 
-  public function createUser(array $userData):bool{
+  public function createUser(array $userData):string|bool{
 //try and error
 
     //  print_r($userData);
@@ -20,7 +20,11 @@ class User{
     $sql = 'INSERT INTO user (fullName,email, password) VALUES ( :fullName,:email, :password)';
    
      
-    return Database::query($sql, $userData);
+     if(Database::query($sql, $userData)){
+      return Database::lastInsertId();
+     }
+     return false;
+    
 }
 
 
@@ -30,7 +34,7 @@ class User{
 
     Database::query($sql,['email'=>$email]);
     
-    return Database::rowCount()>1;
+    return Database::rowCount() >= 1 ;
 
   }
   public function loginUser(string $email, string $password):bool{

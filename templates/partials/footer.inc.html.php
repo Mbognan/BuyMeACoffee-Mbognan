@@ -3,7 +3,7 @@
   <hr>
   <p>
     <em> 
-      &copy; <?= date('Y')?><a href="<?= $_ENV['SITE_URL']?>"><?= $_ENV['SITE_NAME']?></a> 
+      &copy; <?= date('Y')?><a href="<?= site_url()?>"><?= site_name()?></a> 
     </em>
   </p>
 </footer>
