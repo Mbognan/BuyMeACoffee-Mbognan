@@ -31,6 +31,8 @@ class Session{
   }
 
   public function doesExist(string $key):bool{
+    // echo $this->get('userId');
+    // exit();
     return !empty($_SESSION[$key]); 
 }
 

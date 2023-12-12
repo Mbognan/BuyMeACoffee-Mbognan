@@ -28,8 +28,8 @@ class Database{
     static::$stmt = static::$pdo->prepare($sql);
 
     foreach($binds as $key => $value){
-      echo $key .'='. $value .'';
-      echo '<br>';
+      // echo $key .'='. $value .'';
+      // echo '<br>';
       static::$stmt->bindValue($key, $value);
     }
 
@@ -45,7 +45,7 @@ class Database{
   }
 
   public static function fetch(){
-    return static::$stmt->fetch();
+    return static::$stmt->fetch(PDO::FETCH_ASSOC);
   }
 
   public static function fetchAll(): ?array{

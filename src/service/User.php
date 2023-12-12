@@ -4,6 +4,8 @@ declare (strict_types =1);
 
 use BuyMeACoffee\Kernel\Session;
 use BuyMeACoffee\Model\User as UserModel;
+use stdClass;
+
  class User{
 
 
@@ -36,9 +38,13 @@ use BuyMeACoffee\Model\User as UserModel;
     return (string)password_hash($password, self::PASSWORD_ALGORITHM,[ 'cost'  => self::PASSWORD_COST_FACTOR]);
   }
 
-  public function isVerified(string $clearPassword, string $hashPassword):bool{
+  public function isVerified(string $clearPassword, string $hashPassword){
       return password_verify($clearPassword, $hashPassword);
 
+  }
+
+  public function getUserDetails(string $email){
+    return $this->userModel->getUserDetails($email); 
   }
 
 

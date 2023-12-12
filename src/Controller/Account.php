@@ -13,16 +13,18 @@ class Account{
     //private UserService $userService;
     // private Session $session;
     private UserSession $userSession;
+    private bool $isUserLogin;
   public function __construct(private UserService $userService = new UserService){
         // $this->userService = new UserService();
         $session = new Session();
         $this->userSession = new UserSession($session);
+   
   }     
 
   
   public function signUp():void{  
     $viewVariables = [];
-    if(Input::post('signup_button')){
+    if(Input::postExist('signup_button')){
       // echo Input::post('email');
       $fullName = Input::post('name');
       $email = Input::post('email');
@@ -42,11 +44,8 @@ class Account{
           ];
         
           if($userId = $this->userService->create($user)){
-            $this->userSession->setAuthentication([
-              UserSession::USER_SESSION_ID => $userId,
-              'email'=> $email,
-              'fullName' => $fullName
-            ]);
+            $this->userSession->setAuthentication($userId,$email,$fullName
+            );
           //User Login Success     
             redirect('/');
           }else{
@@ -69,7 +68,36 @@ class Account{
     View::render('account/signup','Sign Up',$viewVariables);
   }
   public function signIn():void{
-    View::render('account/signin','Login');
+    $viewVariables = [];
+    if(Input::postExist('signin_button')){ 
+    $email = Input::post('email');
+    
+    $password = Input::post('password');
+
+    $userDetails = $this->userService->getUserDetails($email);
+    // var_dump($userDetails); exit();
+    $hashPassword = $userDetails['password'];
+    $userId = (string)$userDetails['userId'];
+    $userEmail = $userDetails['email'];
+     $userName = $userDetails['fullName'];
+    // var_dump($hashPassword); exit();
+  
+   
+    if(isset($userDetails) && $this->userService->isVerified($password,$hashPassword )){
+      $this->userSession->setAuthentication($userId, $userEmail,$userName);
+      redirect('/');
+    
+    }else{
+      $viewVariables[View::ERROR_MESSAGE_KEY] = 'Credentials are not correct';
+
+    }
+  }
+    
+
+    View::render('account/signin','Login',$viewVariables);
+  }
+  public function edit(){
+    View::render('account/edit','Edit Account',['isUserLogin' => $this->isUserLogin]);
   }
 
   public function logout():void{

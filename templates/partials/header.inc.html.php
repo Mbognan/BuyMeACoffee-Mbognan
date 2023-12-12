@@ -7,3 +7,6 @@
 </head>
 <body>
   <?php include 'messages.inc.html.php' ?>
+  <?php if(!empty($isUserLogin) && $isUserLogin === true): ?>
+  <?php include 'user_menu.inc.html.php' ?>
+  <?php endif; ?>

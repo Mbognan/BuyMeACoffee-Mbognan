@@ -37,10 +37,17 @@ class User{
     return Database::rowCount() >= 1 ;
 
   }
-  public function loginUser(string $email, string $password):bool{
+  public function getUserDetails(string $email){
 
 
-    return true;
+
+    $sql = 'SELECT * FROM user WHERE email = :email LIMIT 1 ';
+    Database::query($sql,['email'=>$email]);
+
+    return Database::fetch();
+
+
+
   }
   
 }

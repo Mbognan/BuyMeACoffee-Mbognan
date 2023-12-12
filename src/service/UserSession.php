@@ -11,6 +11,7 @@ class UserSession{
     $this->session = $session;
   }
   public function isUserLogin():bool{
+    
 
     return $this->session->doesExist(self::USER_SESSION_ID);
     }
@@ -19,10 +20,18 @@ class UserSession{
       return $this->session->get('fullName');
     }
 
-    public function setAuthentication(array $userDetails){
+    public function setAuthentication(string $userId,string $email ,string $fullName){
 
     
-      $this->session->sets($userDetails);
+      $this->session->sets(   
+     
+        [
+          'userId' => $userId,
+          'email' => $email, 
+          'fullName' => $fullName 
+
+        ]
+    );
     
   
     }
