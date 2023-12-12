@@ -75,32 +75,43 @@ class Account{
     $password = Input::post('password');
 
     $userDetails = $this->userService->getUserDetails($email);
+
     // var_dump($userDetails); exit();
-    $hashPassword = $userDetails['password'];
-    $userId = (string)$userDetails['userId'];
-    $userEmail = $userDetails['email'];
-     $userName = $userDetails['fullName'];
+    // $hashPassword = $userDetails['password'];
+    // $userId = (string)$userDetails['userId'];
+    // $userEmail = $userDetails['email'];
+    //  $userName = $userDetails['fullName'];
     // var_dump($hashPassword); exit();
+
+
   
    
-    if(isset($userDetails) && $this->userService->isVerified($password,$hashPassword )){
-      $this->userSession->setAuthentication($userId, $userEmail,$userName);
+    if(!empty($userDetails['password']) && $this->userService->isVerified($password, $userDetails['password'])){
+      $this->userSession->setAuthentication($userDetails['userId'], $userDetails['email'],$userDetails['fullName']);
       redirect('/');
     
     }else{
-      $viewVariables[View::ERROR_MESSAGE_KEY] = 'Credentials are not correct';
-
+      
+       echo $viewVariables[View::ERROR_MESSAGE_KEY] = 'Credentials are not correct';
     }
+    
   }
     
+  View::render('account/signin','Login',$viewVariables);
 
-    View::render('account/signin','Login',$viewVariables);
   }
+
+  // for future Updates
   public function edit(){
+    if(Input::postExist('edit_submit')){
+      $name = Input::post('name');
+      $email = Input::post('email');
+    }
+    
     View::render('account/edit','Edit Account',['isUserLogin' => $this->isUserLogin]);
   }
 
-  public function logout():void{
+  public function logout():void{  
     $this->userSession->logout();
     redirect('/');
   }

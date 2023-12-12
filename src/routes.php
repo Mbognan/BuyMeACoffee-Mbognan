@@ -24,8 +24,6 @@ try {
     }
  
 
-
-
 } catch (viewNotFound $err) {
   echo $err->getMessage();
 }

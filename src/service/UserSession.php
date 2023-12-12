@@ -20,7 +20,7 @@ class UserSession{
       return $this->session->get('fullName');
     }
 
-    public function setAuthentication(string $userId,string $email ,string $fullName){
+    public function setAuthentication(string|int $userId,string $email ,string $fullName){
 
     
       $this->session->sets(   
