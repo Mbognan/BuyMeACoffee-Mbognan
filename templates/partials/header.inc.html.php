@@ -19,6 +19,7 @@
   <link href="assets/css/styles.css" rel="stylesheet" />
 </head>
 <body id="page-top">
+      
   <?php include 'messages.inc.html.php' ?>
 
    <?php include 'user_menu.inc.html.php' ?>

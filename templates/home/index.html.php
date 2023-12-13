@@ -1,7 +1,5 @@
 <?php if (!empty($name)): ?>
-  <header class="masthead bg-primary text-white text-center">
-    <div class="container d-flex align-items-center flex-column">
-    <div class="container d-flex align-items-center flex-column">
+        
              
              <img class="masthead-avatar mb-5" src="assets/img/avataaars.svg" alt="..." />
            
@@ -133,10 +131,7 @@
 
 
 
-<?php else: ?>
-        <header class="masthead bg-primary text-white text-center">
-            <div class="container d-flex align-items-center flex-column">
-             
+<?php else: ?>        
                 <img class="masthead-avatar mb-5" src="assets/img/avataaars.svg" alt="..." />
               
                 <h1 class="masthead-heading text-uppercase mb-0">Buy Me A Coffee</h1>
