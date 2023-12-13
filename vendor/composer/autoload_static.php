@@ -115,6 +115,16 @@ class ComposerStaticInit4b001f02712d953b836d87fbd0a41048
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'M' => 
+        array (
+            'Materialize' => 
+            array (
+                0 => __DIR__ . '/..' . '/ph-7/materialize-css',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
@@ -125,6 +135,7 @@ class ComposerStaticInit4b001f02712d953b836d87fbd0a41048
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit4b001f02712d953b836d87fbd0a41048::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit4b001f02712d953b836d87fbd0a41048::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit4b001f02712d953b836d87fbd0a41048::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit4b001f02712d953b836d87fbd0a41048::$classMap;
 
         }, null, ClassLoader::class);

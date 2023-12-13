@@ -1,6 +1,58 @@
 {
     "packages": [
         {
+            "name": "components/jquery",
+            "version": "v3.7.1",
+            "version_normalized": "3.7.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/components/jquery.git",
+                "reference": "8edc7785239bb8c2ad2b83302b856a1d61de60e7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/components/jquery/zipball/8edc7785239bb8c2ad2b83302b856a1d61de60e7",
+                "reference": "8edc7785239bb8c2ad2b83302b856a1d61de60e7",
+                "shasum": ""
+            },
+            "time": "2023-09-22T01:43:46+00:00",
+            "type": "component",
+            "extra": {
+                "component": {
+                    "scripts": [
+                        "jquery.js"
+                    ],
+                    "files": [
+                        "jquery.min.js",
+                        "jquery.min.map",
+                        "jquery.slim.js",
+                        "jquery.slim.min.js",
+                        "jquery.slim.min.map"
+                    ]
+                }
+            },
+            "installation-source": "dist",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "JS Foundation and other contributors"
+                }
+            ],
+            "description": "jQuery JavaScript Library",
+            "homepage": "http://jquery.com",
+            "support": {
+                "forum": "http://forum.jquery.com",
+                "irc": "irc://irc.freenode.org/jquery",
+                "issues": "https://github.com/jquery/jquery/issues",
+                "source": "https://github.com/jquery/jquery",
+                "wiki": "http://docs.jquery.com/"
+            },
+            "install-path": "../components/jquery"
+        },
+        {
             "name": "doctrine/lexer",
             "version": "3.0.0",
             "version_normalized": "3.0.0.0",
@@ -149,6 +201,60 @@
                 }
             ],
             "install-path": "../egulias/email-validator"
+        },
+        {
+            "name": "ph-7/materialize-css",
+            "version": "1.0.0",
+            "version_normalized": "1.0.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pH-7/materialize-css-composer.git",
+                "reference": "968d23a6fd3ee7b2bbcd9666f35a22a928fb6f1d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pH-7/materialize-css-composer/zipball/968d23a6fd3ee7b2bbcd9666f35a22a928fb6f1d",
+                "reference": "968d23a6fd3ee7b2bbcd9666f35a22a928fb6f1d",
+                "shasum": ""
+            },
+            "require": {
+                "components/jquery": "^3.2.1"
+            },
+            "time": "2022-04-13T11:24:04+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "Materialize": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alvin Wang",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Alan Chang",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Builds Materialize distribution packages for PHP",
+            "homepage": "https://materializecss.com",
+            "keywords": [
+                "css",
+                "materialize",
+                "materialize composer",
+                "materialize packagist",
+                "php materialize"
+            ],
+            "support": {
+                "source": "https://github.com/pH-7/materialize-css-composer/tree/v1.0.0"
+            },
+            "install-path": "../ph-7/materialize-css"
         },
         {
             "name": "psr/container",

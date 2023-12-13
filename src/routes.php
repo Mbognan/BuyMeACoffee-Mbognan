@@ -20,7 +20,7 @@ try {
   if($userSession->isUserLogin()){
       Router::getAndPost('/account/edit', 'Account@edit');
       Router::get('/payment', 'Payment@payment');
-      Router::get('/logout', 'Account@logout');
+      Router::get('/account/logout', 'Account@logout');
     }
  
 
