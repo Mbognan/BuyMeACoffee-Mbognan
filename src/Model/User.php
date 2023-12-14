@@ -45,9 +45,14 @@ class User{
     Database::query($sql,['email'=>$email]);
 
     return Database::fetch();
+  }
 
+  public function getId(string $userId){
+    $sql = 'SELECT userId FROM user WHERE userId = :userId LIMIT1';
+    Database::query($sql,['user_id'=>$userId]);
+    return Database::fetch();
 
-
+    
   }
   
 }

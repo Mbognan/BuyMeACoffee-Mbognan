@@ -38,5 +38,8 @@ class UserSession{
     public function logout(){
       $this->session->destroy();
     }
+    public function getId():string{
+      return $this->session->get('userId');
+    }
   
 }

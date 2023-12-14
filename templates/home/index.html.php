@@ -107,30 +107,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <?php else: ?>        
                 <img class="masthead-avatar mb-5" src="assets/img/avataaars.svg" alt="..." />
               

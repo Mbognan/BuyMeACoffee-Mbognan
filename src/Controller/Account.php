@@ -30,6 +30,9 @@ class Account{
       $email = Input::post('email');
       $password = Input::post('password');
 
+   
+    try {
+  
       if(isset($fullName, $email, $password)){
         if($this->userService->isEmailValid($email) && $this->userService->isPasswordValid($password)){
 
@@ -48,7 +51,9 @@ class Account{
             );
           //User Login Success     
             redirect('/');
-          }else{
+          }
+          
+          else{
             $viewVariables[View::ERROR_MESSAGE_KEY] = 'An error has occurred while creating your account..';
 
           }
@@ -61,12 +66,25 @@ class Account{
     }else{
       $viewVariables[View::ERROR_MESSAGE_KEY] = 'All fields are required';
 
-    }
+    }  
 
+  } catch (\PDOException $e) {
+    if($e->getCode() == 23000 ){
+      $viewVariables[View::ERROR_MESSAGE_KEY] = 'Email Already Exists! Please try Again.';
+    }else {
+                
+      $viewVariables[View::ERROR_MESSAGE_KEY] = 'An error occurred while processing the payment: ' . $e->getMessage();
   }
+  }  
+ 
+  }
+   
 
     View::render('account/signup','Sign Up',$viewVariables);
   }
+
+
+  
   public function signIn():void{
     $viewVariables = [];
     if(Input::postExist('signin_button')){ 

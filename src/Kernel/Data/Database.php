@@ -28,12 +28,12 @@ class Database{
     static::$stmt = static::$pdo->prepare($sql);
 
     foreach($binds as $key => $value){
-      // echo $key .'='. $value .'';
-      // echo '<br>';
+    
       static::$stmt->bindValue($key, $value);
     }
 
     if($execute){
+      
       return static::$stmt->execute();
     }
     return true;
@@ -62,5 +62,6 @@ class Database{
   public static function quote(string $string): ?array{
     return static::$pdo->quote($string ) ?? null;
   }
+
 
 }

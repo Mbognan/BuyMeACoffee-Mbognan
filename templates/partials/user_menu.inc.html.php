@@ -19,27 +19,27 @@
                     <ul class="navbar-nav ms-auto">
                     <?php if (!empty($isUserLogin) && $isUserLogin === true): ?>
                       <li class="nav-item mx-0 mx-lg-1">
-                          <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">Portfolio</a>
+                          <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio"><i class="fas fa-home"></i> Portfolio</a>
                         </li>
                         <li class="nav-item mx-0 mx-lg-1">
-                          <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">About</a>
+                          <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about"><i class="fas fa-info-circle"></i> About</a>
                         </li>
                         <li class="nav-item mx-0 mx-lg-1">
-                          <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Donate</a>
+                          <a class="nav-link py-3 px-0 px-lg-3 rounded" href="<?= site_url('/payment') ?>"><i class="fas fa-donate"></i> Donate</a>
                         </li>
                         <li class="nav-item mx-0 mx-lg-1">
-                          <a class="nav-link py-3 px-0 px-lg-3 rounded" href="<?= site_url('/account/logout')?>">Logout</a>
+                          <a class="nav-link py-3 px-0 px-lg-3 rounded" href="<?= site_url('/account/logout')?>"><i class="fas fa-sign-out-alt"></i> Logout</a>
                         </li>
 
                       <?php else: ?>
                         <li class="nav-item mx-0 mx-lg-1">
-                          <a class="nav-link py-3 px-0 px-lg-3 rounded" href="<?= site_url('') ?>">Home</a>
+                          <a class="nav-link py-3 px-0 px-lg-3 rounded" href="<?= site_url('') ?>"><i class="fas fa-home"></i>  Home</a>
                         </li>
                         <li class="nav-item mx-0 mx-lg-1">
-                          <a class="nav-link py-3 px-0 px-lg-3 rounded" href="<?= site_url('/signup') ?>">Sign Up</a>
+                          <a class="nav-link py-3 px-0 px-lg-3 rounded" href="<?= site_url('/signup') ?>"><i class="fas fa-user-plus"></i> Sign Up</a>
                         </li>
                         <li class="nav-item mx-0 mx-lg-1">
-                          <a class="nav-link py-3 px-0 px-lg-3 rounded" href="<?= site_url('/signin') ?>">Login</a>
+                          <a class="nav-link py-3 px-0 px-lg-3 rounded" href="<?= site_url('/signin') ?>"><i class="fas fa-sign-in-alt"></i> Login</a>
                         </li>
                                                 
                       <?php endif; ?>

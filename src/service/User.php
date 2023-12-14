@@ -47,5 +47,10 @@ use stdClass;
     return $this->userModel->getUserDetails($email); 
   }
 
+  public function getId(string $userId){
+    return $this->userModel->getId($userId);
+
+  }
+
 
  }

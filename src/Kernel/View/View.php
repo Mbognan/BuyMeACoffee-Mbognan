@@ -11,10 +11,10 @@ final class View{
   private const FILE_EXTENSION = '.html.php';
   public const SUCCESS_MESSAGE_KEY = 'success_message';
   public const ERROR_MESSAGE_KEY = 'error_message';
-   public static function render(string $view, string $title,array $context = []){
+   public static function render(string $view, string $title,array $context = []):void{
 
     extract($context);
-    require self::PATH. 'partials/header.inc.html.php';
+    include self::PATH. 'partials/header.inc.html.php';
 
     if(self::isViewExists($view)){
        include_once(self::PATH. $view . self::FILE_EXTENSION);
@@ -23,7 +23,7 @@ final class View{
       throw new viewNotFound(sprintf('%s does not exists.', $view . self::FILE_EXTENSION));
     }
 
-    require self::PATH . 'partials/footer.inc.html.php';
+    include self::PATH . 'partials/footer.inc.html.php';
 
    
       
